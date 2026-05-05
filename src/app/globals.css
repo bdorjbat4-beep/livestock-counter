@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --steppe-green: #2d7d2d;
+  --earth-brown:  #9a6e2a;
+}
+
+@layer base {
+  body {
+    @apply bg-stone-50 text-stone-800 antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+  * { @apply border-stone-200; }
+}
+
+@layer utilities {
+  .card {
+    @apply bg-white rounded-2xl border border-stone-100 shadow-sm;
+  }
+  .btn-primary {
+    @apply bg-steppe-600 hover:bg-steppe-700 text-white font-medium
+           px-5 py-2.5 rounded-xl transition-all active:scale-95
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-outline {
+    @apply border border-stone-300 hover:bg-stone-50 text-stone-700 font-medium
+           px-5 py-2.5 rounded-xl transition-all active:scale-95;
+  }
+  .input {
+    @apply w-full border border-stone-200 rounded-xl px-4 py-2.5
+           focus:outline-none focus:ring-2 focus:ring-steppe-400
+           bg-white placeholder:text-stone-400 text-sm;
+  }
+}
+
+/* Drop zone animation */
+@keyframes pulse-border {
+  0%, 100% { border-color: #4a9e4a; }
+  50%       { border-color: #2d7d2d; }
+}
+.drop-active { animation: pulse-border 1s ease-in-out infinite; }
+
+/* Count card shimmer */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}

@@ -1,0 +1,11 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /records/{recordId} {
+      // Зөвхөн өөрийн бичлэгийг унших/засах боломжтой
+      allow read, delete: if request.auth != null && resource.data.userId == request.auth.uid;
+      // Шинэ бичлэг үүсгэхдээ нэвтэрсэн байх + өөрийн userId-г оруулах
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+    }
+  }
+}
